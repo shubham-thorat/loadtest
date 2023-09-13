@@ -30,7 +30,7 @@ def addJSONToExcel(inputJSONFile, outputXlsxFile):
         jsonFile = open(inputJSONFile)
         data = json.load(jsonFile)
         wb = load_workbook(outputXlsxFile)
-        sheet_name = 'WS_2'  # Change this to the desired sheet name
+        sheet_name = 'WS_3'  # Change this to the desired sheet name
         sheet = wb[sheet_name]
         index = sheet.max_row + 1
         print('Starting row : ',index)
