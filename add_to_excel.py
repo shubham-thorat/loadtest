@@ -3,6 +3,12 @@ from openpyxl import load_workbook
 import json
 # No	connections	threads	duration(ms)	req/sec	bytes_trasfer/sec	50th percentile	90th percentile	99th percentile																	
 def convertJSONToArray(index,item):
+    machine = ''
+    if 'machine' in item:
+        machine = item['machine']
+    else:
+        machine = 't3.medium'
+
     try:
       rows = [
           index,
@@ -18,7 +24,8 @@ def convertJSONToArray(index,item):
           item['50th_percentile'],
           item['90th_percentile'],
           item['99th_percentile'],
-          item['100th_percentile']
+          item['100th_percentile'],
+          machine
       ]
 
       return rows
@@ -30,7 +37,7 @@ def addJSONToExcel(inputJSONFile, outputXlsxFile):
         jsonFile = open(inputJSONFile)
         data = json.load(jsonFile)
         wb = load_workbook(outputXlsxFile)
-        sheet_name = 'WS_3'  # Change this to the desired sheet name
+        sheet_name = 'WS_4'  # Change this to the desired sheet name
         sheet = wb[sheet_name]
         index = sheet.max_row + 1
         print('Starting row : ',index)
